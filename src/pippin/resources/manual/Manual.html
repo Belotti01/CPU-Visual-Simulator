@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<title> CPU Visual Simulator - Manual </title>
+	<meta charset="UTF-8"/>
+	<style>
+			body {
+				font-family: Verdana;
+				color: black;
+				height: auto;
+				margin: auto;
+				line-height: 1.5;
+				content: "";
+				clear: both;
+				width: 700px;
+			}
+
+			table {
+				width: 100%;
+				color: black;
+			}
+
+			td, th {
+				border: 2px inset #c0c0c0;
+				text-align: center;
+				padding: 6px;
+			}
+
+			.shortcut {
+			    border: none;
+			}
+
+			.shortcuts td {
+				text-align: left;
+				border: none;
+			}
+
+			.data-flow {
+				background-color: #ff8f8f;
+			}
+
+			.control {
+				background-color: #8fffaf;
+			}
+
+			.arithm-logic {
+				background-color: #958fff;
+			}
+
+			.demo {
+				border: 2px inset #c0c0c0;
+				border-collapse: separate;
+				text-align: left;
+				height: 227;
+			}
+
+			.demo th {
+				border: 2px inset #c0c0c0;
+				background: #ff8300;
+			}
+
+			.demo td {
+				border: 2px inset #999999;
+				text-align: left;
+				background: #e0ffff;
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+
+			.demo .image-td {
+				padding: 0px;
+			}
+
+			.left-align {
+				text-align: left;
+			}
+		</style>
+</head>
+
+<body>
+<h1 class="header"> MANUAL </h1>
+
+<p>
+	This CPU Visual Simulator allows you to enter and visualize the
+	execution of assembly language code. Instructions and numeric data
+	can be inserted or modified directly in RAM. It is possible to define "labels"
+	(identifiers to be used in place of memory addresses) in the greyed table on the
+	left of the RAM: these labels can then be used as parameters in jump instructions,
+	or as variable identifiers. At any time, it is possible to switch between symbolic
+	and binary representations. It is also possible to directly modify the Program Counter,
+	in order to set the next instruction that will be executed.
+</p>
+
+<p> Editing shortcuts </p>
+
+<br>
+
+<table class="shortcuts">
+	<tr>
+		<td> CTRL + C </td>
+		<td class="left-align"> Copy </td>
+	</tr>
+	<tr>
+		<td> CTRL + V </td>
+		<td class="left-align"> Paste </td>
+	</tr>
+	<tr>
+		<td> CTRL + X </td>
+		<td class="left-align"> Cut </td>
+	</tr>
+	<tr>
+		<td> CTRL + S </td>
+		<td class="left-align"> Shift down from selected cell (included), writing a NOP in its previous position </td>
+	</tr>
+	<tr>
+		<td> CTRL + W </td>
+		<td class="left-align"> Shift up from selected cell, overwriting the selected cell with the value below it</td>
+	</tr>
+</table>
+
+<h2> Instruction set </h2>
+
+<table>
+	<tr class="data-flow">
+		<th colspan="3"> Data Flow</th>
+	</tr>
+	<tr class="data-flow" >
+		<td> LOD X <br> 00000100</td>
+		<td> LOD #X <br> 00010100</td>
+		<td class="left-align"> Load content of Memory Location X (or number #X) into the Accumulator.</td>
+	</tr>
+	<tr class="data-flow">
+		<td> STO Y <br> 00000101</td>
+		<td></td>
+		<td class="left-align"> Store the value of the Accumulator into Memory Location X.</td>
+	</tr>
+
+	<tr class="control">
+		<th colspan="3">Control Flow</th>
+	</tr>
+	<tr class="control">
+		<td> JMP P <br> 00001100</td>
+		<td></td>
+		<td class="left-align"> Unconditional jump to the instruction at location P.</td>
+	</tr>
+	<tr class="control">
+		<td> JZ P <br> 00001101</td>
+		<td></td>
+		<td class="left-align"> Jump on Zero: if Flag Z is set, go to instruction number P, otherwise go to the next instruction.</td>
+	</tr>
+	<tr class="control">
+		<td> JNZ P <br> 00001011</td>
+		<td></td>
+		<td class="left-align"> Jump on Not Zero: if Flag Z is cleared, go to instruction number P, otherwise, go to the next instruction.</td>
+	</tr>
+	<tr class="control">
+		<td> JN P <br> 00000110</td>
+		<td></td>
+		<td class="left-align"> Jump on Negative: if Flag N is set, go to instruction number P, otherwise go to the next instruction.</td>
+	</tr>
+	<tr class="control">
+		<td> JNN P <br> 00000111</td>
+		<td></td>
+		<td class="left-align"> Jump on Not Negative: if Flag N is cleared, go to instruction number P, otherwise go to the next instruction.</td>
+	</tr>
+	<tr class="control">
+		<td> NOP <br> 00001110</td>
+		<td></td>
+		<td class="left-align"> No Operation, go to the next instruction.</td>
+	</tr>
+	<tr class="control">
+		<td> HLT <br> 00001111</td>
+		<td></td>
+		<td class="left-align"> Halt execution.</td>
+	</tr>
+
+	<tr class="arithm-logic">
+		<th colspan="3"> Arithmetic-logic</th>
+	</tr>
+	<tr class="arithm-logic">
+		<td> ADD X <br> 00000000</td>
+		<td> ADD #X <br> 00010000</td>
+		<td class="left-align"> Add content of Memory Location X (or number #X) to the Accumulator. Flags are updated.</td>
+	</tr>
+	<tr class="arithm-logic">
+		<td> SUB X <br> 00000001</td>
+		<td> SUB #X <br> 00010001</td>
+		<td class="left-align"> Subtract content of Memory Location X (or number #X) from the Accumulator. Flags are updated.</td>
+	</tr>
+	<tr class="arithm-logic">
+		<td> MUL X <br> 00000010</td>
+		<td> MUL #X <br> 00010010</td>
+		<td class="left-align"> Multiply the Accumulator by the content of Memory Location X (or number #X). Flags are updated.</td>
+	</tr>
+	<tr class="arithm-logic">
+		<td> DIV X <br> 00000011</td>
+		<td> DIV #X <br> 00010011</td>
+		<td class="left-align"> Divide the Accumulator by the content of Memory Location X (or number #X). Flags are updated.</td>
+	</tr>
+	<tr class="arithm-logic">
+		<td> AND X <br> 00001000</td>
+		<td> AND #X <br> 00011000</td>
+		<td class="left-align"> Bitwise AND between the Accumulator and the content of Memory Location X (or number #X). Flags are updated.</td>
+	</tr>
+	<tr class="arithm-logic">
+		<td> NOT X <br> 00001001</td>
+		<td> NOT #X <br> 00011001</td>
+		<td class="left-align"> Bitwise NOT of the content of Memory Location X (or number #X). The result is stored in the Accumulator.</td>
+	</tr>
+	<tr class="arithm-logic">
+		<td> CMP X <br> 00001010</td>
+		<td> CMP #X <br> 00011010</td>
+		<td class="left-align"> Subtract content of Memory Location X (or number #X) from the Accumulator. Flags are updated, but the content of the Accumulator is not modified.</td>
+	</tr>
+</table>
+
+<h2> Examples </h2>
+
+<table class="demo">
+	<tr>
+		<th colspan="3"> High-level IF-THEN-ELSE example and its translation </th>
+	</tr>
+	<tr>
+		<td>
+			<p>
+				IF (condition) <br>
+				THEN <br>
+				&emsp;&emsp;&emsp;instruction1 <br>
+				ELSE <br>
+				&emsp;&emsp;&emsp;instruction2 <br>
+				ENDIF <br>
+				instruction3
+			</p>
+		</td>
+		<td>
+			<p>
+				IF X == 3 <br>
+				THEN <br>
+				&emsp;&emsp;&emsp; Y = Y + 5 <br>
+				ELSE <br>
+				&emsp;&emsp;&emsp; Z = Z + 2 <br>
+				ENDIF <br>
+				X = 8
+			</p>
+		</td>
+		<td class="image-td" width="270px" height="247px">
+			<img src="img/if-then-else-example.PNG">
+		</td>
+	</tr>
+</table>
+
+<table class="demo">
+	<tr>
+		<th colspan="3"> High-level WHILE-DO example and its translation </th>
+	</tr>
+	<tr>
+		<td>
+			<p>
+				instruction1 <br>
+				WHILE (condition) <br>
+				DO <br>
+				&emsp;&emsp;&emsp;instruction2 <br>
+				&emsp;&emsp;&emsp;instruction3 <br>
+				ENDWHILE
+			</p>
+		</td>
+		<td>
+			<p>
+				// sum all the integer numbers from 0 to max <br>
+				// assertion: max >= 0 <br>
+				SUM = 0 <br>
+				COUNT = 0 <br>
+				WHILE COUNT != MAX <br>
+				DO <br>
+				&emsp;&emsp;&emsp; COUNT = COUNT + 1 <br>
+				&emsp;&emsp;&emsp; SUM = SUM + COUNT <br>
+				ENDWHILE
+			</p>
+		</td>
+		<td class="image-td" width="270px" height="247px">
+			<img src="img/while-do-example.PNG">
+		</td>
+	</tr>
+</table>
+
+<h2> Copyright notice </h2>
+
+<p>
+	Cengage Learning Inc. Reproduced by permission. http://www.cengage.com/permissions <br>
+	This simulator can be used exclusively for non-commercial, educational activities.
+</p>
+
+<p>
+	This CPU Visual Simulator was derived (modified and extended - see credits) in 2021 from
+	the original PIPPIN Applet (&copy; 1998 PWS Publishing Company), with permission from Cengage
+	Learning Inc. Other deletions, additions, edits, changes to, or derivatives of the Cengage
+	Material can only be made with Cengage's express written approval, email sufficing.
+</p>
+
+<h2> Credits </h2>
+
+<p>Original PIPPIN applet:</p>
+
+<ul>
+	<li>Prof. Stuart Hirshfield and Prof. Rick Decker (designers)</li>
+</ul>
+
+<p>CPU Visual Simulator extension, carried out with an Open Pedagogy / OER-enabled process:</p>
+
+<ul>
+	<li> Renato Cortinovis, PhD - Project coordinator </li>
+	<li> Nicola Preda - Porting to a Java application, initial new functionalities, and documentation </li>
+	<li> Jonathan Cancelli - Implementation of the great majority of new functionalities </li>
+	<li> Alessandro Belotti - Implementation of visualizations and animations </li>
+	<li> Davide Riva - Initial refactoring </li>
+	<li> MariaPia Cavarretta, Giordano Cortinovis, Giovanni Ingargiola, Alessandro Suru, Piero Andrea Sileo and others - Documentation. </li>
+</ul>
+
+</body>
+
+</html>
