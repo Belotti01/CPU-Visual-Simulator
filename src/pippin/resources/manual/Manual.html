@@ -127,12 +127,12 @@
 		<th colspan="3"> Data Flow</th>
 	</tr>
 	<tr class="data-flow" >
-		<td> LOD X <br> 00000100</td>
-		<td> LOD #X <br> 00010100</td>
+		<td> LOD X <br> 00000101</td>
+		<td> LOD #X <br> 00010101</td>
 		<td class="left-align"> Load content of Memory Location X (or number #X) into the Accumulator.</td>
 	</tr>
 	<tr class="data-flow">
-		<td> STO Y <br> 00000101</td>
+		<td> STO Y <br> 00000110</td>
 		<td></td>
 		<td class="left-align"> Store the value of the Accumulator into Memory Location X.</td>
 	</tr>
@@ -141,32 +141,32 @@
 		<th colspan="3">Control Flow</th>
 	</tr>
 	<tr class="control">
-		<td> JMP P <br> 00001100</td>
+		<td> JMP P <br> 00001101</td>
 		<td></td>
 		<td class="left-align"> Unconditional jump to the instruction at location P.</td>
 	</tr>
 	<tr class="control">
-		<td> JZ P <br> 00001101</td>
+		<td> JZ P <br> 00001110</td>
 		<td></td>
 		<td class="left-align"> Jump on Zero: if Flag Z is set, go to instruction number P, otherwise go to the next instruction.</td>
 	</tr>
 	<tr class="control">
-		<td> JNZ P <br> 00001011</td>
+		<td> JNZ P <br> 00001100</td>
 		<td></td>
 		<td class="left-align"> Jump on Not Zero: if Flag Z is cleared, go to instruction number P, otherwise, go to the next instruction.</td>
 	</tr>
 	<tr class="control">
-		<td> JN P <br> 00000110</td>
+		<td> JN P <br> 00000111</td>
 		<td></td>
 		<td class="left-align"> Jump on Negative: if Flag N is set, go to instruction number P, otherwise go to the next instruction.</td>
 	</tr>
 	<tr class="control">
-		<td> JNN P <br> 00000111</td>
+		<td> JNN P <br> 00001000</td>
 		<td></td>
 		<td class="left-align"> Jump on Not Negative: if Flag N is cleared, go to instruction number P, otherwise go to the next instruction.</td>
 	</tr>
 	<tr class="control">
-		<td> NOP <br> 00001110</td>
+		<td> NOP <br> 00000000</td>
 		<td></td>
 		<td class="left-align"> No Operation, go to the next instruction.</td>
 	</tr>
@@ -180,38 +180,38 @@
 		<th colspan="3"> Arithmetic-logic</th>
 	</tr>
 	<tr class="arithm-logic">
-		<td> ADD X <br> 00000000</td>
-		<td> ADD #X <br> 00010000</td>
+		<td> ADD X <br> 00000001</td>
+		<td> ADD #X <br> 00010001</td>
 		<td class="left-align"> Add content of Memory Location X (or number #X) to the Accumulator. Flags are updated.</td>
 	</tr>
 	<tr class="arithm-logic">
-		<td> SUB X <br> 00000001</td>
-		<td> SUB #X <br> 00010001</td>
+		<td> SUB X <br> 00000010</td>
+		<td> SUB #X <br> 00010010</td>
 		<td class="left-align"> Subtract content of Memory Location X (or number #X) from the Accumulator. Flags are updated.</td>
 	</tr>
 	<tr class="arithm-logic">
-		<td> MUL X <br> 00000010</td>
-		<td> MUL #X <br> 00010010</td>
+		<td> MUL X <br> 00000011</td>
+		<td> MUL #X <br> 00010011</td>
 		<td class="left-align"> Multiply the Accumulator by the content of Memory Location X (or number #X). Flags are updated.</td>
 	</tr>
 	<tr class="arithm-logic">
-		<td> DIV X <br> 00000011</td>
-		<td> DIV #X <br> 00010011</td>
+		<td> DIV X <br> 00000100</td>
+		<td> DIV #X <br> 00010100</td>
 		<td class="left-align"> Divide the Accumulator by the content of Memory Location X (or number #X). Flags are updated.</td>
 	</tr>
 	<tr class="arithm-logic">
-		<td> AND X <br> 00001000</td>
-		<td> AND #X <br> 00011000</td>
+		<td> AND X <br> 00001001</td>
+		<td> AND #X <br> 00011001</td>
 		<td class="left-align"> Bitwise AND between the Accumulator and the content of Memory Location X (or number #X). Flags are updated.</td>
 	</tr>
 	<tr class="arithm-logic">
-		<td> NOT X <br> 00001001</td>
-		<td> NOT #X <br> 00011001</td>
+		<td> NOT X <br> 00001010</td>
+		<td> NOT #X <br> 00011010</td>
 		<td class="left-align"> Bitwise NOT of the content of Memory Location X (or number #X). The result is stored in the Accumulator.</td>
 	</tr>
 	<tr class="arithm-logic">
-		<td> CMP X <br> 00001010</td>
-		<td> CMP #X <br> 00011010</td>
+		<td> CMP X <br> 00001011</td>
+		<td> CMP #X <br> 00011011</td>
 		<td class="left-align"> Subtract content of Memory Location X (or number #X) from the Accumulator. Flags are updated, but the content of the Accumulator is not modified.</td>
 	</tr>
 </table>

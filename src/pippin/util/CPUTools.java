@@ -28,21 +28,21 @@ public class CPUTools {
 
     public static String error;
 
-    public static final int ADD = 0;
-    public static final int SUB = 1;
-    public static final int MUL = 2;
-    public static final int DIV = 3;
-    public static final int LOD = 4;
-    public static final int STO = 5;
-    public static final int JN = 6;
-    public static final int JNN = 7;
-    public static final int AND = 8;
-    public static final int NOT = 9;
-    public static final int CMP = 10;
-    public static final int JNZ = 11;
-    public static final int JMP = 12;
-    public static final int JZ = 13;
-    public static final int NOP = 14;
+    public static final int NOP = 0;
+    public static final int ADD = 1;
+    public static final int SUB = 2;
+    public static final int MUL = 3;
+    public static final int DIV = 4;
+    public static final int LOD = 5;
+    public static final int STO = 6;
+    public static final int JN = 7;
+    public static final int JNN = 8;
+    public static final int AND = 9;
+    public static final int NOT = 10;
+    public static final int CMP = 11;
+    public static final int JNZ = 12;
+    public static final int JMP = 13;
+    public static final int JZ = 14;
     public static final int HLT = 15;
     public static final int IMMEDIATE_FLAG = 16;
 
