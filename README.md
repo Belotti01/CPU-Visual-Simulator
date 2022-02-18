@@ -1,3 +1,6 @@
+## Download
+Direct link: https://github.com/Belotti01/CPU-Visual-Simulator/releases/download/v1.0.0/CPU.Visual.Simulator.jar
+
 ## About
 
 This CPU Visual Simulator allows you to enter and visualize the execution of assembly language code.
