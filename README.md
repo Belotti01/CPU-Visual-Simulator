@@ -1,5 +1,5 @@
 ## Download
-Direct link: https://github.com/Belotti01/CPU-Visual-Simulator/releases/download/v1.0.0/CPU.Visual.Simulator.jar
+Direct link: https://github.com/Belotti01/CPU-Visual-Simulator/releases/download/v1.0.0/cpu-visual-simulator.jar
 
 ## About
 
